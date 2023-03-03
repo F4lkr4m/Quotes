@@ -3,13 +3,15 @@ import {  Route, Routes } from 'react-router-dom';
 import { fetchGetQuotesA, fetchGetQuotesB } from './api';
 import './App.css'
 import { HeaderWithLayout, Modal } from './components';
+import { Notification } from './components/Notification/Notification';
 import { AboutPage, QuotesPage } from './pages';
 import { QuotesStore } from './store/quotes';
 
-const App = React.memo(() => {
+const App = () => {
 
   return (
     <>
+      <Notification />
       <HeaderWithLayout />
       <Routes>
         <Route path="/about" element={<AboutPage />} />
@@ -18,6 +20,6 @@ const App = React.memo(() => {
       </Routes>
     </>
   )
-})
+};
 
 export default App
