@@ -54,12 +54,20 @@ export class QuotesStore {
 
   async fetchQuotes() {
     try {
-      this.status = "loading";
+      runInAction(() => {
+        this.status = "loading";
+      });
+
       const result = await this.quotesRequest();
-      this.quotesObj = result;
-      this.status = "success";
+
+      runInAction(() => {
+        this.quotesObj = result;
+        this.status = "success";
+      });
     } catch (error) {
-      this.status = "error";
+      runInAction(() => {
+        this.status = "error";
+      })
       console.error(error);
     }
   }

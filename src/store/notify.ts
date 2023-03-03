@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, runInAction } from 'mobx';
 import { NOTIFICATION_LIFE_TIME } from '../constants';
 
 
@@ -18,12 +18,13 @@ class NotifyStore {
     this.isVisible = true;
 
     setTimeout(() => {
-      this.isVisible = false;
+      runInAction(() => {
+        this.isVisible = false;
+      })
     }, NOTIFICATION_LIFE_TIME)
   }
 
   setMessageAndShow = (msg: string) => {
-    console.log('here');
     this.setMessage(msg);
     this.showNotification();
   }

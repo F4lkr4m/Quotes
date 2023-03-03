@@ -29,9 +29,9 @@ const QuoteModalInfo: React.FC<QuoteModalInfoProps> = observer((props) => {
   const { quote } = props;
   return (
     <div className="quote-modal__info">
-      {Object.entries(quote).map(([key, value]) => {
+      {Object.entries(quote).map(([key, value], index) => {
         return (
-          <div className="quote-modal__row">
+          <div key={`quote-modal__row-${key}-${index}`} className="quote-modal__row">
             {key} : {value}
           </div>
         );
