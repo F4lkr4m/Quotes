@@ -1,2 +1,2 @@
-export * from './notify';
-export * from './quotes';
+export * from './notify'
+export * from './quotes'

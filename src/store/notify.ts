@@ -1,35 +1,34 @@
-import { makeAutoObservable, runInAction } from 'mobx';
-import { NOTIFICATION_LIFE_TIME } from '../constants';
-
+import { makeAutoObservable, runInAction } from 'mobx'
+import { NOTIFICATION_LIFE_TIME } from '../constants'
 
 class NotifyStore {
-  msg: null | string = null;
-  isVisible: boolean = false;
+  msg: null | string = null
+  isVisible: boolean = false
 
   constructor() {
-    makeAutoObservable(this);
+    makeAutoObservable(this)
   }
 
   setMessage = (msg: string) => {
-    this.msg = msg;
+    this.msg = msg
   }
 
   showNotification = () => {
-    this.isVisible = true;
+    this.isVisible = true
 
     setTimeout(() => {
       runInAction(() => {
-        this.isVisible = false;
+        this.isVisible = false
       })
     }, NOTIFICATION_LIFE_TIME)
   }
 
   setMessageAndShow = (msg: string) => {
-    this.setMessage(msg);
-    this.showNotification();
+    this.setMessage(msg)
+    this.showNotification()
   }
 }
 
-const nofifyStore = new NotifyStore();
+const nofifyStore = new NotifyStore()
 
-export default nofifyStore;
+export default nofifyStore

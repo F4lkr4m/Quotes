@@ -1,18 +1,16 @@
-import { OK, UNEXPECTED_ERROR } from '../constants';
-import nofifyStore from '../store/notify';
+import { OK, UNEXPECTED_ERROR } from '../constants'
+import nofifyStore from '../store/notify'
 
-
-
-export const fetchGet = async (url = ""): Promise<any> => {
+export const fetchGet = async (url = ''): Promise<any> => {
   try {
-    const response = await fetch(url, { cache: "no-cache" });
+    const response = await fetch(url, { cache: 'no-cache' })
     if (response.status === OK) {
-      const data = await response.json();
-      return data;
+      const data = await response.json()
+      return data
     }
   } catch (error) {
-    nofifyStore.setMessageAndShow(UNEXPECTED_ERROR);
-    console.error(error);
-    throw error;
+    nofifyStore.setMessageAndShow(UNEXPECTED_ERROR)
+    console.error(error)
+    throw error
   }
 }

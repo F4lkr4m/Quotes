@@ -1,10 +1,5 @@
-import React from 'react';
+import React from 'react'
 
 export const AboutPage: React.FC = () => {
-
-  return (
-    <div>
-      Добро пожаловать на мою реализацию тестового задания "Котировки"
-    </div>
-  );
+  return <div>Добро пожаловать на мою реализацию тестового задания "Котировки"</div>
 }

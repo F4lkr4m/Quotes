@@ -1,2 +1,2 @@
-export * from './About';
-export * from './Quotes';
+export * from './About'
+export * from './Quotes'
