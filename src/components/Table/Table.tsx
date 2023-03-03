@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react-lite';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Quote, QuoteMap } from '../../types';
-import { QuoteModal } from '../Modal/QuoteModal';
 import './Table.scss';
 
 interface QuotesTableProps {
