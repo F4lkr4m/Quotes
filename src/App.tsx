@@ -2,7 +2,7 @@ import React from 'react'
 import {  Route, Routes } from 'react-router-dom';
 import { fetchGetQuotesA, fetchGetQuotesB } from './api';
 import './App.css'
-import { HeaderWithLayout } from './components';
+import { HeaderWithLayout, Modal } from './components';
 import { AboutPage, QuotesPage } from './pages';
 import { QuotesStore } from './store/quotes';
 

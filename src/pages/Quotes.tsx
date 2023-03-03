@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { observer } from "mobx-react"
 import { QuotesStore } from '../store/quotes';
 import { toJS } from 'mobx';
-import { QuotesTable } from '../components';
+import { QuoteModal, QuotesTable } from '../components';
 
 interface QuotesPageProps {
   title: string;
@@ -12,19 +12,23 @@ interface QuotesPageProps {
 export const QuotesPage: React.FC<QuotesPageProps> = observer((props) => {
   const store = props.store as QuotesStore;
   useEffect(() => {
-    console.log(props.title, 'mount');
     store.fetchQuotes();
     store.startUpdating();
     return () => {
       store.stopUpdating();
-      console.log(props.title, 'unmount');
     }
-  }, [])
+  }, []);
 
   return (
     <div>
+      <QuoteModal 
+        onHide={store.hideModal} 
+        visible={store.modalIsVisible} 
+        quote={store.selectedQuote?.quote ?? null} 
+        quoteName={store.selectedQuote?.quoteName ?? null} 
+      />
       <QuoteTitle title={props.title} />
-      <QuotesTable quotes={toJS(store.quotesObj)} />
+      <QuotesTable quotes={toJS(store.quotesObj)} onRowClick={store.setSelectedQuoteAndShowModal} />
     </div>
   );
 })

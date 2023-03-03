@@ -4,11 +4,18 @@ import { Quote, QuoteMap } from '../types';
 
 const INTERVAL_TIME = 5000;
 
+interface SelectedQuote {
+  quote: Quote;
+  quoteName: string;
+}
+
 export class QuotesStore {
   quotesObj: QuoteMap | null = null;
   status: "init" | "loading" | "success" | "error" = "init";
   timer: null | number = null;
   seconds: number = 0;
+  selectedQuote: SelectedQuote | null = null;
+  modalIsVisible: boolean = false;
   quotesRequest;
 
   constructor(quotesRequest: () => Promise<QuoteMap>) {
@@ -26,6 +33,25 @@ export class QuotesStore {
     }
   }
 
+  showModal = () => {
+    this.modalIsVisible = true;
+    this.stopUpdating();
+  }
+
+  hideModal = () => {
+    this.modalIsVisible = false;
+    this.startUpdating();
+  }
+
+  setSelectedQuoteAndShowModal = (quote: Quote, quoteName: string) => {
+    this.selectedQuote = {
+      quote,
+      quoteName,
+    };
+    this.showModal();
+  };
+
+
   async fetchQuotes() {
     try {
       this.status = "loading";
@@ -36,7 +62,5 @@ export class QuotesStore {
       this.status = "error";
       console.error(error);
     }
-    
-      
   }
 }
