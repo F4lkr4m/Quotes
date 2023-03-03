@@ -1,0 +1,21 @@
+
+.quotes-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: 100%;
+
+  &_highlight:hover {
+    background-color: #e3e3e3;
+    cursor: pointer;
+  }
+}
+
+.quote-text {
+  animation: blinker 500ms infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
