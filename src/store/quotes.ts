@@ -1,5 +1,4 @@
-import { configure, makeAutoObservable, runInAction } from 'mobx'
-import { fetchGetQuotes } from '../api'
+import { makeAutoObservable, runInAction } from 'mobx'
 import { Quote, QuoteMap } from '../types'
 
 const INTERVAL_TIME = 5000
@@ -13,7 +12,6 @@ export class QuotesStore {
   quotesObj: QuoteMap | null = null
   status: 'init' | 'loading' | 'success' | 'error' = 'init'
   timer: null | number = null
-  seconds: number = 0
   selectedQuote: SelectedQuote | null = null
   modalIsVisible: boolean = false
   quotesRequest

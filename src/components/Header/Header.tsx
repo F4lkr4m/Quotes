@@ -12,9 +12,6 @@ export const HeaderWithLayout = () => {
           <Link to="/quotes/b">Котировки Б</Link>
         </nav>
       </div>
-      <main className="content">
-        <Outlet />
-      </main>
     </>
   )
 }
