@@ -1,5 +1,4 @@
 import { configure, makeAutoObservable, runInAction } from 'mobx'
-import { fetchGetQuotes } from '../api'
 import { Quote, QuoteMap } from '../types'
 
 const INTERVAL_TIME = 5000

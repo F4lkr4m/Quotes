@@ -27,10 +27,10 @@ export const QuotesTable: React.FC<QuotesTableProps> = observer((props) => {
               key={`quote-row-${quote.id}`}
               className="quotes-row quotes-row_highlight"
             >
-              <QuoteRowNameDisplay getName={key} />
-              <QuoteRowNameDisplay getName={quote.last} />
-              <QuoteRowNameDisplay getName={quote.highestBid} />
-              <QuoteRowNameDisplay getName={quote.percentChange} />
+              <QuoteRowNameDisplay data={key} />
+              <QuoteRowNameDisplay data={quote.last} />
+              <QuoteRowNameDisplay data={quote.highestBid} />
+              <QuoteRowNameDisplay data={quote.percentChange} />
             </div>
           )
         })}
@@ -38,23 +38,27 @@ export const QuotesTable: React.FC<QuotesTableProps> = observer((props) => {
   )
 })
 
-const ANIMATION_TIME = 500
+const ANIMATION_TIME = 500;
 
-const QuoteRowNameDisplay: React.FC<any> = observer(({ getName }) => {
-  const textRef = useRef(null)
+interface QuoteRowNameDisplayProps {
+  data: string;
+}
+
+const QuoteRowNameDisplay: React.FC<QuoteRowNameDisplayProps> = observer(({ data }) => {
+  const textRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     return () => {
       if (textRef.current) {
-        ;(textRef.current as HTMLDivElement).className = 'quote-text'
+        (textRef.current as HTMLDivElement).className = 'quote-text';
 
         setTimeout(() => {
           if (textRef.current) {
-            ;(textRef.current as HTMLDivElement).className = ''
+            (textRef.current as HTMLDivElement).className = '';
           }
         }, ANIMATION_TIME)
       }
     }
-  }, [getName])
-  return <div ref={textRef}>{getName}</div>
+  }, [data])
+  return <div ref={textRef}>{data}</div>
 })
